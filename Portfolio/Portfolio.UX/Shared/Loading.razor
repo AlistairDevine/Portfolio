@@ -4,9 +4,13 @@
 }
 else
 {
-    <div style="position:absolute; top:30vh; width:100%; text-align:center">
-        <h1>Portfolio</h1>
-        <p><i class="fas fa-spin fa-spinner"></i> loading screen two... </p>
+    <div class="body-wrapper">
+        <svg width="200" height="200" viewBox="0 0 100 100">
+            <polyline class="line-cornered stroke-still" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
+            <polyline class="line-cornered stroke-still" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
+            <polyline class="line-cornered stroke-animation" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
+            <polyline class="line-cornered stroke-animation" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
+        </svg>
     </div>
 }
 
@@ -18,7 +22,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(1000);
+        await Task.Delay(10000);
         isLoaded = true;
     }
 }

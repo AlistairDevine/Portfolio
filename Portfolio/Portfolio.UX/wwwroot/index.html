@@ -10,6 +10,9 @@
     <link href="css/app.css" rel="stylesheet" />
     <link href="Portfolio.UX.styles.css" rel="stylesheet" />
 
+    <!--Loader css-->
+    <link href="css/loader.css" rel="stylesheet" />
+
     <!--External stylesheets-->
     <link href="css/noscript.css" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
@@ -18,9 +21,17 @@
 </head>
 
 <body>
-    <!--TODO : Loading screen component statement-->
     <div id="app">
-        <h1>Portfolio first loading screen</h1>
+        <div style="position:absolute; top:30vh; width:100%; text-align:center">
+            <h3>Alistair Devine</h3>
+            <p><em>Portfolio Loading</em></p>
+        </div>
+        <svg width="200" height="200" viewBox="0 0 100 100">
+            <polyline class="line-cornered stroke-still" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
+            <polyline class="line-cornered stroke-still" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
+            <polyline class="line-cornered stroke-animation" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
+            <polyline class="line-cornered stroke-animation" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
+        </svg>
     </div>
 
     <div id="blazor-error-ui">
@@ -28,6 +39,7 @@
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
     </div>
+
     <script src="_framework/blazor.webassembly.js"></script>
 
     <!--External stylesheets-->
