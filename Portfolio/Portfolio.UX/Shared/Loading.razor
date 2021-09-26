@@ -1,28 +1,68 @@
-﻿@if (isLoaded)
+﻿@inject HttpClient _httpClient
+
+@if (isLoaded)
 {
     @ChildContent
 }
 else
 {
-    <div class="body-wrapper">
-        <svg width="200" height="200" viewBox="0 0 100 100">
-            <polyline class="line-cornered stroke-still" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
-            <polyline class="line-cornered stroke-still" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
-            <polyline class="line-cornered stroke-animation" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
-            <polyline class="line-cornered stroke-animation" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
-        </svg>
+    <div style="position:absolute; top:35vh; width:100%; text-align:center">
+        <h1><BlazorTypewriter.Typewriter Builder="@typewriter"/></h1>
     </div>
+    <svg width="200" height="200" viewBox="0 0 100 100">
+        <polyline class="line-cornered stroke-still" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
+        <polyline class="line-cornered stroke-still" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
+        <polyline class="line-cornered stroke-animation" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
+        <polyline class="line-cornered stroke-animation" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
+    </svg>
 }
 
 @code {
     bool isLoaded;
+    IList<Project> projectData;
+    Project[] project = new Project[10];
+
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
+        project = await _httpClient.GetFromJsonAsync<Project[]>("https://api.github.com/users/AlistairDevine/repos");
+        SettingData();
         await Task.Delay(10000);
         isLoaded = true;
+    }
+
+    TypewriterBuilder typewriter = new TypewriterBuilder(defaultCharacterPause: 6)
+        .TypeString("Alistair Devine, Portfolio loading", 50)
+        .Pause(2000)
+        .DeleteAll()
+        .TypeString("DotNet Developer, Portfolio loading", 50)
+        .Pause(2000)
+        .DeleteAll(30)
+        .TypeString("View projects and contact information, Portfolio loading", 50)
+        .Pause(2000)
+        .DeleteAll(20)
+        .Pause(500)
+        .Loop();
+
+    //TODO : Set up complete project data pipeline
+    //Sort by UpdateAt field order to display fullnames of the projects
+    //RESEARCH : Cascading parameters
+    public void SettingData()
+    {
+        byte[] arr = new byte[10];
+        Span<byte> bytes = arr;
+        Span<byte> slice = bytes.Slice(4, 3);
+
+
+        Span<Project> bits = project;
+        ReadOnlySpan<Project> projects = project;
+        ReadOnlySpan<Project> sliceProject = projects.Slice(5, 3);
+        foreach (var item in sliceProject)
+        {
+            Console.WriteLine(item.Full_Name);
+        }
     }
 }

@@ -1,11 +1,11 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
+﻿@*<div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">Portfolio.UX</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+<div class="" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
@@ -23,15 +23,110 @@
             </NavLink>
         </li>
     </ul>
+</div>*@
+
+<div class="nav-menu">
+    <div class="nav-social">
+        <div class="nav-social_profile">
+            <div class="nav-social_profilePhoto">
+                <span class="profileImage">
+                    <img src="images/me.jpg" alt="Self Portrait" style="width: 50%; height: 100px;" />
+                </span>
+            </div>
+            <div class="nav-social_profileInfo">
+                <div class="nav-social_profileName">
+                    <h3>Alistair Devine</h3>
+                </div>
+                <div class="nav-social_profileEmail">
+                    <p><em>alistair.devine98@gmail.com</em></p>
+                </div>
+            </div>
+        </div>
+        <div class="nav-social_links">
+            <div class="nav-social_linkGit">
+                <a href="#">
+                    <span class="Github">
+                        <i class="oi oi-hard-drive"></i>
+                    </span>
+                </a>
+            </div>
+            <div class="nav-social_linkLkin">
+                <a href="#">
+                    <span class="LinkedIn">
+                        <i class="oi oi-external-link"></i>
+                    </span>
+                </a>
+            </div>
+            <div class="nav-social_linkTwitter">
+                <a href="#">
+                    <span class="Twitter">
+                        <i class="oi oi-star"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="nav-route @NavRouteCssClass" @onclick="ToggleNavMenu">
+        <ul class="nav flex-column">
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="counter">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Resume
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="fetchdata">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Open Source
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="projects">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Projects
+                </NavLink>
+            </li>
+        </ul>
+    </div>
+    <div class="nav-project">
+        <ul class="nav-project_list">
+            @foreach (var item in itemCollection)
+            {
+                <li class="nav-project_item">
+                    <article>
+                        <a class="project_thumbnail" href="~/images/pic01.jpg">
+                            <!--item.ProjectImage-->
+                            <img src="~/images/pic01.jpg" alt="Project Image One" />
+                        </a>
+                        <!--item.Title-->
+                        <h2>Project One</h2>
+                        <!--item.Description-->
+                        <p>St Barnabas Hospice</p>
+                    </article>
+                </li>
+            }
+        </ul>
+    </div>
 </div>
 
 @code {
     private bool collapseNavMenu = true;
+    Project[] itemCollection = new Project[6];
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    //private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string NavRouteCssClass => collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    class projectModel
+    {
+        public string Title { get; set; }
+        public string Image { get; set; }
+        public string Description { get; set; }
     }
 }
