@@ -66,25 +66,25 @@
             </div>
         </div>
     </div>
-    <div class="nav-route @NavRouteCssClass" @onclick="ToggleNavMenu">
+    <div class="nav-route" @onclick="ToggleNavMenu">
         <ul class="flex-column">
             <li class="nav-item">
-                <NavLink class="" href="" Match="NavLinkMatch.All">
+                <NavLink class="route-link" href="" Match="NavLinkMatch.All">
                     <span class="oi oi-home" aria-hidden="true"></span> Home
                 </NavLink>
             </li>
             <li class="nav-item">
-                <NavLink class="" href="counter">
+                <NavLink class="route-link" href="counter">
                     <span class="oi oi-plus" aria-hidden="true"></span> Resume
                 </NavLink>
             </li>
             <li class="nav-item">
-                <NavLink class="" href="fetchdata">
+                <NavLink class="route-link" href="fetchdata">
                     <span class="oi oi-list-rich" aria-hidden="true"></span> Open Source
                 </NavLink>
             </li>
             <li class="nav-item">
-                <NavLink class="" href="projects">
+                <NavLink class="route-link" href="projects">
                     <span class="oi oi-list-rich" aria-hidden="true"></span> Projects
                 </NavLink>
             </li>
@@ -96,14 +96,18 @@
             {
                 <li class="nav-project_item">
                     <article>
-                        <a class="project_thumbnail" href="#">
-                            <!--item.ProjectImage-->
-                            <img src="/images/pic07.jpg" alt="Project Image One" />
-                        </a>
-                        <!--item.Title-->
-                        <h2>Project One</h2>
-                        <!--item.Description-->
-                        <p>St Barnabas Hospice</p>
+                        <div class="project_display" @onmouseover="@ToggleProjectInfo">
+                            <a class="project_thumbnail" href="#">
+                                <!--item.ProjectImage-->
+                                <img class="project_image" src="/images/pic07.jpg" alt="Project Image One" />
+                            </a>
+                        </div>
+                        <div class="@ProjectCssClass">
+                            <!--item.Title-->
+                            <h2>Project One</h2>
+                            <!--item.Description-->
+                            <p>St Barnabas Hospice</p>
+                        </div>
                     </article>
                 </li>
             }
@@ -113,14 +117,21 @@
 
 @code {
     private bool collapseNavMenu = true;
+    private bool expandProjectInfo = false;
     Project[] itemCollection = new Project[6];
 
-    //private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-    private string NavRouteCssClass => collapseNavMenu ? null : "collapse" ;
+    private string baseProjectCss = "project_info";
+
+    private string ProjectCssClass => baseProjectCss + (expandProjectInfo ? null : " collapse");
+    //private string NavRouteCssClass => collapseNavMenu ? null : "collapse" ;
 
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+    private void ToggleProjectInfo()
+    {
+        expandProjectInfo = !expandProjectInfo;
     }
 
     class projectModel

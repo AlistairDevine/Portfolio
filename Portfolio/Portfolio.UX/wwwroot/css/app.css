@@ -2,6 +2,8 @@
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    width: 100%;
+    height: 100%;
 }
 
 a, .btn-link {
@@ -65,6 +67,9 @@ a, .btn-link {
     z-index: 70;
     color: white;
 }
+.nav-toggle {
+
+}
 /*Nav-social*/
 .nav-social {
     display: flex;
@@ -74,6 +79,7 @@ a, .btn-link {
 }
 .nav-social_profile {
     width: 100%;
+    height: 75%;
     display: flex;
     flex-direction: row;
     padding: 2%;
@@ -81,10 +87,11 @@ a, .btn-link {
 }
 .nav-social_profilePhoto {
     width: 50%;
+    height: 100%;
     margin-right: 4%;
     display: flex;
     flex-direction: row;
-    height: fit-content;
+    text-align: center;
     flex: 2;
 }
 .profileImage {
@@ -92,7 +99,7 @@ a, .btn-link {
     height: 100%;
 }
 .profilePhoto {
-    width: 100%;
+    width: 75%;
     height: 100%;
     border-radius: 40%;
 }
@@ -109,7 +116,8 @@ a, .btn-link {
     flex-direction: row;
     height: 100%;
     justify-content: space-evenly;
-    padding: 5%;
+    padding: 1%;
+    align-items: center;
 }
 /*Nav-Route*/
 .nav-route {
@@ -131,6 +139,10 @@ a, .btn-link {
     font-size: 60px;
     border: white 2px solid;
     padding: 0;
+    width: 100%;
+}
+.route-link {
+    justify-content: center;
 }
 /*Nav-Project*/
 .nav-project {
@@ -148,3 +160,28 @@ a, .btn-link {
     align-items: center;
     justify-content: space-between;
 }
+.nav-project_item {
+    display: inline-flex;
+    flex-direction: row;
+    width: 100%;
+}
+.project_display {
+    width: 25vh;
+    margin: 5% 0 0 5%;
+}
+.project_image {
+    height: 100%;
+    width: 100%;
+}
+.project_info {
+    right: -40%;
+    top: -40%;
+    position: relative;
+    font-size: 135%;
+    font-family: monospace;
+    font-weight: 500;
+    display: block;
+}
+    .project_info collapse {
+        visibility: collapse;
+    }
