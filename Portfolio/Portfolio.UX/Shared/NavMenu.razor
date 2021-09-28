@@ -30,7 +30,7 @@
         <div class="nav-social_profile">
             <div class="nav-social_profilePhoto">
                 <span class="profileImage">
-                    <img src="images/me.jpg" alt="Self Portrait" style="width: 50%; height: 100px;" />
+                    <img class="profilePhoto" src="images/me.jpg" alt="Self Portrait"/>
                 </span>
             </div>
             <div class="nav-social_profileInfo">
@@ -67,24 +67,24 @@
         </div>
     </div>
     <div class="nav-route @NavRouteCssClass" @onclick="ToggleNavMenu">
-        <ul class="nav flex-column">
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+        <ul class="flex-column">
+            <li class="nav-item">
+                <NavLink class="" href="" Match="NavLinkMatch.All">
                     <span class="oi oi-home" aria-hidden="true"></span> Home
                 </NavLink>
             </li>
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="counter">
+            <li class="nav-item">
+                <NavLink class="" href="counter">
                     <span class="oi oi-plus" aria-hidden="true"></span> Resume
                 </NavLink>
             </li>
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="fetchdata">
+            <li class="nav-item">
+                <NavLink class="" href="fetchdata">
                     <span class="oi oi-list-rich" aria-hidden="true"></span> Open Source
                 </NavLink>
             </li>
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="projects">
+            <li class="nav-item">
+                <NavLink class="" href="projects">
                     <span class="oi oi-list-rich" aria-hidden="true"></span> Projects
                 </NavLink>
             </li>
@@ -96,9 +96,9 @@
             {
                 <li class="nav-project_item">
                     <article>
-                        <a class="project_thumbnail" href="~/images/pic01.jpg">
+                        <a class="project_thumbnail" href="#">
                             <!--item.ProjectImage-->
-                            <img src="~/images/pic01.jpg" alt="Project Image One" />
+                            <img src="/images/pic07.jpg" alt="Project Image One" />
                         </a>
                         <!--item.Title-->
                         <h2>Project One</h2>
@@ -116,7 +116,7 @@
     Project[] itemCollection = new Project[6];
 
     //private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-    private string NavRouteCssClass => collapseNavMenu ? "collapse" : null;
+    private string NavRouteCssClass => collapseNavMenu ? null : "collapse" ;
 
     private void ToggleNavMenu()
     {

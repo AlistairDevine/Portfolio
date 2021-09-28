@@ -20,7 +20,7 @@ else
 @code {
     bool isLoaded;
     IList<Project> projectData;
-    Project[] project = new Project[10];
+    Project[] project = new Project[1];
 
 
     [Parameter]
@@ -56,13 +56,16 @@ else
         Span<byte> bytes = arr;
         Span<byte> slice = bytes.Slice(4, 3);
 
-
         Span<Project> bits = project;
         ReadOnlySpan<Project> projects = project;
-        ReadOnlySpan<Project> sliceProject = projects.Slice(5, 3);
-        foreach (var item in sliceProject)
+        //ReadOnlySpan<Project> sliceProject = projects.Slice(5, 3);
+        foreach (var item in project)
         {
             Console.WriteLine(item.Full_Name);
         }
+        //foreach (var item in projects)
+        //{
+        //    Console.WriteLine(item.Full_Name);
+        //}
     }
 }
