@@ -1,9 +1,8 @@
 ﻿@page "/fetchdata"
-@inject HttpClient _httpClient;
 
 <h3>Open source projects</h3>
 
-@if (projects is null)
+@if (projectData is null)
 {
     <p><em>Loading...</em></p>
 }
@@ -19,7 +18,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var project in projects)
+            @foreach (var project in projectData)
             {
                 <tr>
                     <td>
@@ -38,21 +37,7 @@ else
 
 
 @code {
-    IList<ProjectModel> projects;
+    [CascadingParameter]
+    IEnumerable<Project> projectData { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        projects = await _httpClient.GetFromJsonAsync<ProjectModel[]>("https://api.github.com/users/AlistairDevine/repos");
-    }
-
-    class ProjectModel
-    {
-        public string Full_Name { get; set; }
-        public string Description { get; set; }
-        public string HTML_URL { get; set; }
-        public DateTime Created_At { get; set; }
-        public DateTime Updated_At { get; set; }
-        public string Language { get; set; }
-        public bool Fork { get; set; }
-    }
 }

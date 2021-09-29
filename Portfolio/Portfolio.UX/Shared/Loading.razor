@@ -1,6 +1,4 @@
-﻿@inject HttpClient _httpClient
-
-@if (isLoaded)
+﻿@if (isLoaded)
 {
     @ChildContent
 }
@@ -19,17 +17,12 @@ else
 
 @code {
     bool isLoaded;
-    IList<Project> projectData;
-    Project[] project = new Project[1];
-
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        project = await _httpClient.GetFromJsonAsync<Project[]>("https://api.github.com/users/AlistairDevine/repos");
-        SettingData();
         await Task.Delay(10000);
         isLoaded = true;
     }
@@ -47,9 +40,8 @@ else
         .Pause(500)
         .Loop();
 
-    //TODO : Set up complete project data pipeline
-    //Sort by UpdateAt field order to display fullnames of the projects
-    //RESEARCH : Cascading parameters
+    //TESTING : Can be removed
+    Project[] project = new Project[1];
     public void SettingData()
     {
         byte[] arr = new byte[10];
@@ -63,9 +55,5 @@ else
         {
             Console.WriteLine(item.Full_Name);
         }
-        //foreach (var item in projects)
-        //{
-        //    Console.WriteLine(item.Full_Name);
-        //}
     }
 }

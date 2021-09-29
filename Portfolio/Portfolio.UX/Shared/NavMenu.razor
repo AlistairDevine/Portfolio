@@ -92,21 +92,21 @@
     </div>
     <div class="nav-project">
         <ul class="nav-project_list">
-            @foreach (var item in itemCollection)
+            @foreach (var item in projectCollection)
             {
                 <li class="nav-project_item">
                     <article>
                         <div class="project_display" @onmouseover="@ToggleProjectInfo">
-                            <a class="project_thumbnail" href="#">
+                            <a class="project_thumbnail" href="@item.HTML_URL">
                                 <!--item.ProjectImage-->
                                 <img class="project_image" src="/images/pic07.jpg" alt="Project Image One" />
                             </a>
                         </div>
                         <div class="@ProjectCssClass">
                             <!--item.Title-->
-                            <h2>Project One</h2>
+                            <h2>@item.Full_Name</h2>
                             <!--item.Description-->
-                            <p>St Barnabas Hospice</p>
+                            <p>@item.Description</p>
                         </div>
                     </article>
                 </li>
@@ -118,12 +118,17 @@
 @code {
     private bool collapseNavMenu = true;
     private bool expandProjectInfo = false;
-    Project[] itemCollection = new Project[6];
+
+    [CascadingParameter]
+    IEnumerable<Project> projectCollection { get; set; }
 
     private string baseProjectCss = "project_info";
 
     private string ProjectCssClass => baseProjectCss + (expandProjectInfo ? null : " collapse");
     //private string NavRouteCssClass => collapseNavMenu ? null : "collapse" ;
+
+    //[CascadingParameter]
+    //Project[] projectData { get; set; }
 
     private void ToggleNavMenu()
     {
@@ -134,10 +139,19 @@
         expandProjectInfo = !expandProjectInfo;
     }
 
-    class projectModel
+    protected override Task OnInitializedAsync()
     {
-        public string Title { get; set; }
-        public string Image { get; set; }
-        public string Description { get; set; }
+        projectCollection = DataPipeline();
+        foreach (var item in projectCollection)
+        {
+            Console.WriteLine("PROJECT COLLECTION: " + item.Full_Name);
+        }
+        return base.OnInitializedAsync();
+    }
+
+    public IEnumerable<Project> DataPipeline()
+    {
+        var topSixProjects = projectCollection.OrderBy(p => p.Updated_At).Take(6);
+        return topSixProjects;
     }
 }

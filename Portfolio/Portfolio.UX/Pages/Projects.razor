@@ -1,0 +1,19 @@
+﻿@page "/projects"
+
+<h3>Project data</h3>
+<div>
+    <ul>
+        @foreach (var project in projectData)
+        {
+            <li>@project.Full_Name</li>
+            <li>@project.Description</li>
+            <li>@project.Updated_At</li>
+            <li>@project.HTML_URL</li>
+        }
+    </ul>
+</div>
+
+@code {
+    [CascadingParameter]
+    IEnumerable<Project> projectData { get; set; }
+}
