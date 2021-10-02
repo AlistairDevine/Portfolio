@@ -1,0 +1,46 @@
+﻿@if (collapseNavMenu is not true)
+{
+    <div class="nav-toggle" style="background-color: blue;">
+        <button class="nav-toggle_item" @onclick="() => Hide()"></button>
+    </div>
+}
+else
+{
+    <div class="nav-toggle-collapse" style="background-color: red;">
+        <button class="nav-toggle_item" @onclick="() => Show()"></button>
+    </div>
+}
+
+@code {
+    [Parameter] public bool collapseNavMenu { get; set; } = true;
+    [Parameter] public string baseNavMenuCss { get; set; } = "nav-menu";
+    public EventCallback OnCloseReuqested { get; set; }
+
+
+    public void toggleShow()
+    {
+        collapseNavMenu = !collapseNavMenu;
+        StateHasChanged();
+    }
+    public void Show()
+    {
+        collapseNavMenu = true;
+        StateHasChanged();
+    }
+    public void Hide()
+    {
+        collapseNavMenu = false;
+        StateHasChanged();
+    }
+    async Task ReuqestClose()
+    {
+        if (OnCloseReuqested.HasDelegate)
+        {
+            await OnCloseReuqested.InvokeAsync(null);
+        }
+        else
+        {
+            Hide();
+        }
+    }
+}

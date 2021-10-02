@@ -17,19 +17,33 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Shared\NavigationComponents\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <UpToDateCheckInput Remove="Pages\Projects.razor" />
   </ItemGroup>
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Pages\Projects.razor" />
+    <_ContentIncludedByDefault Remove="Shared\NavigationComponents\ToggleNavigation.razor" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Pages\Projects.razor" />
+    <None Include="Shared\NavigationComponents\ToggleNavigation.razor" />
+    <None Include="wwwroot\images\Svg\arrow-small.svg" />
+    <None Include="wwwroot\images\Svg\arrow.svg" />
+    <None Include="wwwroot\images\Svg\close-small-alt.svg" />
+    <None Include="wwwroot\images\Svg\close-small.svg" />
+    <None Include="wwwroot\images\Svg\close.svg" />
+    <None Include="wwwroot\images\Svg\open-small.svg" />
+    <None Include="wwwroot\images\Svg\open.svg" />
+    <None Include="wwwroot\images\Svg\spinner.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Shared\NavigationComponents\ToggleNavigation.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
 </Project>

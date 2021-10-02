@@ -1,117 +1,102 @@
-﻿@*<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">Portfolio.UX</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
-
-<div class="" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Resume
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Open Source
-            </NavLink>
-        </li>
-    </ul>
-</div>*@
-
-<div class="nav-menu">
-    <div class="nav-social">
-        <div class="nav-social_profile">
-            <div class="nav-social_profilePhoto">
-                <span class="profileImage">
-                    <img class="profilePhoto" src="images/me.jpg" alt="Self Portrait"/>
-                </span>
-            </div>
-            <div class="nav-social_profileInfo">
-                <div class="nav-social_profileName">
-                    <h3>Alistair Devine</h3>
+﻿<div class="@NavMneuCssClass">
+    @if (collapseNavMenu is true)
+    {
+        <div class="nav-toggle" style="background-color: blue;">
+            <button class="nav-toggle_item" @onclick="toggleShow"></button>
+        </div>
+    }
+    else
+    {
+        <div class="nav-toggle-collapse" style="background-color: red;">
+            <button class="nav-toggle_item" @onclick="toggleShow"></button>
+        </div>
+    }
+    <div class="@NavMenuContainerCssClass">
+        <div class="nav-social">
+            <div class="nav-social_profile">
+                <div class="nav-social_profilePhoto">
+                    <span class="profileImage">
+                        <img class="profilePhoto" src="images/me.jpg" alt="Self Portrait" />
+                    </span>
                 </div>
-                <div class="nav-social_profileEmail">
-                    <p><em>alistair.devine98@gmail.com</em></p>
+                <div class="nav-social_profileInfo">
+                    <div class="nav-social_profileName">
+                        <h3>Alistair Devine</h3>
+                    </div>
+                    <div class="nav-social_profileEmail">
+                        <p><em>alistair.devine98@gmail.com</em></p>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-social_links">
+                <div class="nav-social_linkGit">
+                    <a href="#">
+                        <span class="Github">
+                            <i class="oi oi-hard-drive"></i>
+                        </span>
+                    </a>
+                </div>
+                <div class="nav-social_linkLkin">
+                    <a href="#">
+                        <span class="LinkedIn">
+                            <i class="oi oi-external-link"></i>
+                        </span>
+                    </a>
+                </div>
+                <div class="nav-social_linkTwitter">
+                    <a href="#">
+                        <span class="Twitter">
+                            <i class="oi oi-star"></i>
+                        </span>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="nav-social_links">
-            <div class="nav-social_linkGit">
-                <a href="#">
-                    <span class="Github">
-                        <i class="oi oi-hard-drive"></i>
-                    </span>
-                </a>
-            </div>
-            <div class="nav-social_linkLkin">
-                <a href="#">
-                    <span class="LinkedIn">
-                        <i class="oi oi-external-link"></i>
-                    </span>
-                </a>
-            </div>
-            <div class="nav-social_linkTwitter">
-                <a href="#">
-                    <span class="Twitter">
-                        <i class="oi oi-star"></i>
-                    </span>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="nav-route" @onclick="ToggleNavMenu">
-        <ul class="flex-column">
-            <li class="nav-item">
-                <NavLink class="route-link" href="" Match="NavLinkMatch.All">
-                    <span class="oi oi-home" aria-hidden="true"></span> Home
-                </NavLink>
-            </li>
-            <li class="nav-item">
-                <NavLink class="route-link" href="counter">
-                    <span class="oi oi-plus" aria-hidden="true"></span> Resume
-                </NavLink>
-            </li>
-            <li class="nav-item">
-                <NavLink class="route-link" href="fetchdata">
-                    <span class="oi oi-list-rich" aria-hidden="true"></span> Open Source
-                </NavLink>
-            </li>
-            <li class="nav-item">
-                <NavLink class="route-link" href="projects">
-                    <span class="oi oi-list-rich" aria-hidden="true"></span> Projects
-                </NavLink>
-            </li>
-        </ul>
-    </div>
-    <div class="nav-project">
-        <ul class="nav-project_list">
-            @foreach (var item in projectCollection)
-            {
-                <li class="nav-project_item">
-                    <article>
-                        <div class="project_display" @onmouseover="@ToggleProjectInfo">
-                            <a class="project_thumbnail" href="@item.HTML_URL">
-                                <!--item.ProjectImage-->
-                                <img class="project_image" src="/images/pic07.jpg" alt="Project Image One" />
-                            </a>
-                        </div>
-                        <div class="@ProjectCssClass">
-                            <!--item.Title-->
-                            <h2>@item.Full_Name</h2>
-                            <!--item.Description-->
-                            <p>@item.Description</p>
-                        </div>
-                    </article>
+        <div class="nav-route">
+            <ul class="flex-column">
+                <li class="nav-item">
+                    <NavLink class="route-link" href="" Match="NavLinkMatch.All">
+                        <span class="oi oi-home" aria-hidden="true"></span> Home
+                    </NavLink>
                 </li>
-            }
-        </ul>
+                <li class="nav-item">
+                    <NavLink class="route-link" href="counter">
+                        <span class="oi oi-plus" aria-hidden="true"></span> Resume
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="route-link" href="fetchdata">
+                        <span class="oi oi-list-rich" aria-hidden="true"></span> Open Source
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="route-link" href="projects">
+                        <span class="oi oi-list-rich" aria-hidden="true"></span> Projects
+                    </NavLink>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-project">
+            <ul class="nav-project_list">
+                @foreach (var item in projectCollection)
+                {
+                    <li class="nav-project_item">
+                        <article>
+                            <div class="project_display">
+                                <a class="project_thumbnail" href="@item.HTML_URL">
+                                    <!--item.ProjectImage-->
+                                    <img class="project_image" src="/images/pic07.jpg" alt="Project Image One" />
+                                </a>
+                            </div>
+                            <div class="@baseProjectCss">
+                                <!--item.Description-->
+                                <p>@item.Full_Name.Remove(0, 15)</p>
+                            </div>
+                        </article>
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
 </div>
 
@@ -123,16 +108,18 @@
     IEnumerable<Project> projectCollection { get; set; }
 
     private string baseProjectCss = "project_info";
+    private string baseNavMenuCss = "nav-menu";
+    private string baseNavMenuContainerCss = "nav-menu_container";
 
-    private string ProjectCssClass => baseProjectCss + (expandProjectInfo ? null : " collapse");
-    //private string NavRouteCssClass => collapseNavMenu ? null : "collapse" ;
+    private string ProjectCssClass => baseProjectCss + (expandProjectInfo ? null : "-collapse");
+    private string NavMenuContainerCssClass => baseNavMenuContainerCss + (collapseNavMenu ? null : "-collapse");
+    private string NavMneuCssClass => baseNavMenuCss + (collapseNavMenu ? null : "-collapse");
 
-    //[CascadingParameter]
-    //Project[] projectData { get; set; }
-
-    private void ToggleNavMenu()
+    public void toggleShow()
     {
         collapseNavMenu = !collapseNavMenu;
+        Console.WriteLine("Navigation menu toggle");
+        StateHasChanged();
     }
     private void ToggleProjectInfo()
     {
@@ -144,7 +131,7 @@
         projectCollection = DataPipeline();
         foreach (var item in projectCollection)
         {
-            Console.WriteLine("PROJECT COLLECTION: " + item.Full_Name);
+            Console.WriteLine("PROJECT COLLECTION: " + item.Full_Name.Remove(0, 15));
         }
         return base.OnInitializedAsync();
     }

@@ -1,7 +1,15 @@
 .page {
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
+    width: 100%;
+    height: 100%;
+}
+
+.nav {
+    width: 30vw;
+    height: 100%;
+    display: flex;
 }
 
 .main {
@@ -43,7 +51,7 @@
 
 @media (min-width: 641px) {
     .page {
-        flex-direction: row;
+        flex-direction: row-reverse;
     }
 
     .sidebar {

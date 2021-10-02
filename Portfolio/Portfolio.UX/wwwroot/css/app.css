@@ -1,4 +1,8 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+#app{
+    width: 100%;
+    height: 100%;
+}
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -58,7 +62,7 @@ a, .btn-link {
     display: block;
     right: 0;
     position: fixed;
-    width: 40%;
+    width: 30vw;
     height: 100%;
     background: rgb(66, 66, 66);
     overflow-x: hidden;
@@ -67,8 +71,79 @@ a, .btn-link {
     z-index: 70;
     color: white;
 }
-.nav-toggle {
+    .nav-menu-collapse {
+        display: block;
+        right: 0;
+        position: fixed;
+        width: 2.6vw;
+        height: 4vh;
+        background: rgb(66, 66, 66);
+        overflow-x: hidden;
+        overflow-y: auto;
+        text-align: left;
+        z-index: 70;
+        color: white;
 
+    }
+.nav-menu_container {
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    animation: 0.1s fade-in ease-out;
+}
+    .nav-menu_container-collapse {
+        display: none;
+        width: auto;
+        height: auto;
+        opacity: 0;
+        transition: 0.1s opacity ease-out;
+    }
+.nav-toggle {
+    color: #DEF2F1;
+    position: absolute;
+    top: 0;
+    width: 2em;
+    height: 2em;
+    background-image: url("/images/Svg/close-small-alt.svg");
+    background-repeat: no-repeat;
+    background-size: 32px 32px;
+    cursor: pointer;
+    display: block;
+    z-index: 71;
+    background-position: 0.4em 0.4em;
+    animation: 0.1s fade-in ease-out;
+    transition: 0.1s opacity ease-out;
+}
+    .nav-toggle-collapse {
+        color: #DEF2F1;
+        position: absolute;
+        top: 0;
+        width: 2em;
+        height: 2em;
+        background-image: url("/images/Svg/open-small.svg");
+        background-repeat: no-repeat;
+        background-size: 32px 32px;
+        cursor: pointer;
+        display: block;
+        z-index: 71;
+        background-position: 0.4em 0.4em;
+        animation: 0.1s fade-in ease-out;
+        transition: 0.1s opacity ease-out;
+    }
+.nav-toggle_item {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 /*Nav-social*/
 .nav-social {
@@ -110,6 +185,9 @@ a, .btn-link {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+.nav-social_profileEmail {
+    font-size: 24px;
 }
 .nav-social_links {
     display: flex;
@@ -154,34 +232,44 @@ a, .btn-link {
     flex-direction: column;
     list-style: none;
     padding: 0;
-    margin: 0;
-    height: 100%;
+    margin-top: 1vh;
     width: 100%;
     align-items: center;
     justify-content: space-between;
 }
 .nav-project_item {
+    position: relative;
     display: inline-flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
+    height: 8.3vh;
 }
 .project_display {
-    width: 25vh;
-    margin: 5% 0 0 5%;
+    width: 50%;
+    height: 8vh;
+    margin: 0;
+    float: left;
 }
 .project_image {
     height: 100%;
     width: 100%;
 }
 .project_info {
-    right: -40%;
-    top: -40%;
-    position: relative;
-    font-size: 135%;
+    width: 75%;
+    right: 0%;
+    top: 10%;
+    position: absolute;
     font-family: monospace;
     font-weight: 500;
-    display: block;
+    visibility: hidden;
+    opacity: 0;
+    animation: 0.1s fade-in ease-out;
+    transition: 0.1s opacity, 0.1s visibility ease-out;
 }
-    .project_info collapse {
-        visibility: collapse;
-    }
+.nav-project_item:hover .nav-project_item:active {
+    border: 1px white dashed;
+}
+.nav-project_item:hover .project_info {
+    visibility: visible;
+    opacity: 1;
+}

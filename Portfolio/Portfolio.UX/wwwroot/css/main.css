@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic");
-@import url("fontawesome-all.min.css");
 
 /*
 	Astral by HTML5 UP
@@ -1305,13 +1304,13 @@ input, select, textarea {
 		box-sizing: inherit;
 	}
 
-	body {
-		background-image: url("/images/pic01.jpg"), url("/images/pic12.jpg");
-		background-repeat: no-repeat;
-		background-size: 100% 100%;
-		background-attachment: fixed;
-		overflow-y: scroll;
-	}
+body {
+	background-color: #747474;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-attachment: fixed;
+	overflow-y: scroll;
+}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
 			-moz-animation: none !important;
@@ -1327,7 +1326,7 @@ input, select, textarea {
 	body, input, textarea, select {
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: 300;
-		color: #777777;
+		color: white;
 		font-size: 20pt;
 		line-height: 1.75em;
 	}
@@ -1588,18 +1587,8 @@ input, select, textarea {
 	input[type="reset"],
 	button,
 	.button {
-		-moz-transition: background-color .25s ease-in-out;
-		-webkit-transition: background-color .25s ease-in-out;
-		-ms-transition: background-color .25s ease-in-out;
-		transition: background-color .25s ease-in-out;
-		-webkit-appearance: none;
-		display: inline-block;
-		background-color: #222222;
-		color: #ffffff;
 		border: 0;
-		cursor: pointer;
-		outline: 0;
-		padding: 0.7em 1.5em 0.7em 1.5em;
+		padding: 0;
 	}
 
 		input[type="button"]:hover,

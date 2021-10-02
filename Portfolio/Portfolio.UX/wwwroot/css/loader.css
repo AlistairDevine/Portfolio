@@ -3,6 +3,13 @@
     height: 100%;
     background: #282828;
 }
+/*Loading screen text*/
+.loadingText {
+    position: absolute;
+    top: 35vh;
+    width: 100%;
+    text-align: center;
+}
 
 svg {
     position: fixed;
