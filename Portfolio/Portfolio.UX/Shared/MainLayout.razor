@@ -1,10 +1,17 @@
 ﻿@inherits LayoutComponentBase
 
 <div class="page">
-    <div class="nav">
-        <NavMenu />
+    <div class="@NavigationCssClass">
+        <NavMenu collapseNavMenu="collapseNavMenu" />
     </div>
+
     <div class="main">
         @Body
     </div>
 </div>
+ @code {
+     //ERROR : EventCallback must be called to return collapseNavMenu value into MainLayout.razor component
+     public bool collapseNavMenu = true;
+     private string baseNavigationCss = "navigation";
+     private string NavigationCssClass => baseNavigationCss + (collapseNavMenu ? null : "-collapse"); 
+ }

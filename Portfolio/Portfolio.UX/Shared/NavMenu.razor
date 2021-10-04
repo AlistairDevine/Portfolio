@@ -101,7 +101,8 @@
 </div>
 
 @code {
-    private bool collapseNavMenu = true;
+    [Parameter]
+    public bool collapseNavMenu { get; set; }
     private bool expandProjectInfo = false;
 
     [CascadingParameter]
