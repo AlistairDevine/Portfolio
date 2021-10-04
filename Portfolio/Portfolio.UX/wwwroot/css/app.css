@@ -25,6 +25,9 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     width: 100%;
     height: 100%;
+    /*TODO : Assign repeated values in html,body and set var() to values*/
+    --navigation-menu-width: 30vw;
+    --navigation-menu-collapse-width: 5vw;
 }
 
 a, .btn-link {

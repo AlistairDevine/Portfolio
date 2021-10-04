@@ -2,7 +2,7 @@
 
 <div class="page">
     <div class="@NavigationCssClass">
-        <NavMenu collapseNavMenu="collapseNavMenu" />
+        <NavMenu collapseNavigationMenu="@UpdateNavigationMenu" />
     </div>
 
     <div class="main">
@@ -10,8 +10,12 @@
     </div>
 </div>
  @code {
-     //ERROR : EventCallback must be called to return collapseNavMenu value into MainLayout.razor component
+     
      public bool collapseNavMenu = true;
      private string baseNavigationCss = "navigation";
-     private string NavigationCssClass => baseNavigationCss + (collapseNavMenu ? null : "-collapse"); 
+     private string NavigationCssClass => baseNavigationCss + (collapseNavMenu ? null : "-collapse");
+     private void UpdateNavigationMenu(bool value)
+     {
+         collapseNavMenu = value;
+     }
  }

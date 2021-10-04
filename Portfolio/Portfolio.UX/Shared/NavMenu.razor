@@ -1,4 +1,4 @@
-﻿<div class="@NavMneuCssClass">
+﻿<div class="@NavMenuCssClass">
     @if (collapseNavMenu is true)
     {
         <div class="nav-toggle" style="background-color: blue;">
@@ -78,7 +78,7 @@
         </div>
         <div class="nav-project">
             <ul class="nav-project_list">
-                @foreach (var item in projectCollection)
+                @foreach (var item in navigationCollection)
                 {
                     <li class="nav-project_item">
                         <article>
@@ -88,7 +88,7 @@
                                     <img class="project_image" src="/images/pic07.jpg" alt="Project Image One" />
                                 </a>
                             </div>
-                            <div class="@baseProjectCss">
+                            <div class="project_info">
                                 <!--item.Description-->
                                 <p>@item.Full_Name.Remove(0, 15)</p>
                             </div>
@@ -102,34 +102,39 @@
 
 @code {
     [Parameter]
-    public bool collapseNavMenu { get; set; }
-    private bool expandProjectInfo = false;
+    public EventCallback<bool> collapseNavigationMenu { get; set; }
 
+    //BUG : When eventcallback is called back into NavMenu.razor the projectCollection resets its values
     [CascadingParameter]
     IEnumerable<Project> projectCollection { get; set; }
 
-    private string baseProjectCss = "project_info";
+    IEnumerable<Project> navigationCollection { get; set; }
+
+    private bool collapseNavMenu = true;
+    private bool expandProjectInfo = false;
+
     private string baseNavMenuCss = "nav-menu";
     private string baseNavMenuContainerCss = "nav-menu_container";
 
-    private string ProjectCssClass => baseProjectCss + (expandProjectInfo ? null : "-collapse");
     private string NavMenuContainerCssClass => baseNavMenuContainerCss + (collapseNavMenu ? null : "-collapse");
-    private string NavMneuCssClass => baseNavMenuCss + (collapseNavMenu ? null : "-collapse");
+    private string NavMenuCssClass => baseNavMenuCss + (collapseNavMenu ? null : "-collapse");
 
-    public void toggleShow()
+    private async Task UpdateNavigationMenu()
+    {
+        await collapseNavigationMenu.InvokeAsync(collapseNavMenu);
+    }
+
+    public async void toggleShow()
     {
         collapseNavMenu = !collapseNavMenu;
+        await UpdateNavigationMenu();
         Console.WriteLine("Navigation menu toggle");
         StateHasChanged();
-    }
-    private void ToggleProjectInfo()
-    {
-        expandProjectInfo = !expandProjectInfo;
     }
 
     protected override Task OnInitializedAsync()
     {
-        projectCollection = DataPipeline();
+        navigationCollection = DataPipeline();
         foreach (var item in projectCollection)
         {
             Console.WriteLine("PROJECT COLLECTION: " + item.Full_Name.Remove(0, 15));
