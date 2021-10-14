@@ -5,14 +5,17 @@
 else
 {
     <div class="loadingText">
-        <h1><BlazorTypewriter.Typewriter Builder="@typewriter"/></h1>
+        <h1><BlazorTypewriter.Typewriter Builder="@typewriter" /></h1>
     </div>
-    <svg width="200" height="200" viewBox="0 0 100 100">
-        <polyline class="line-cornered stroke-still" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
-        <polyline class="line-cornered stroke-still" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
-        <polyline class="line-cornered stroke-animation" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
-        <polyline class="line-cornered stroke-animation" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
-    </svg>
+    <div class="loader">
+        <div class="loader__bar"></div>
+        <div class="loader__bar loader__bar--delay-1"></div>
+        <div class="loader__bar loader__bar--delay-2"></div>
+        <div class="loader__bar loader__bar--delay-3"></div>
+        <div class="loader__bar loader__bar--delay-4"></div>
+        <div class="loader__bar loader__bar--delay-5"></div>
+        <div></div>
+    </div>
 }
 
 @code {
@@ -23,7 +26,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(10000);
+        await Task.Delay(100000);
         isLoaded = true;
     }
 
