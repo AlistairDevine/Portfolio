@@ -1,104 +1,29 @@
-﻿<div class="@NavMenuCssClass">
-    @if (collapseNavMenu is true)
-    {
-        <div class="nav-toggle" style="background-color: blue;">
-            <button class="nav-toggle_item" @onclick="toggleShow"></button>
-        </div>
-    }
-    else
-    {
-        <div class="nav-toggle-collapse" style="background-color: red;">
-            <button class="nav-toggle_item" @onclick="toggleShow"></button>
-        </div>
-    }
-    <div class="@NavMenuContainerCssClass">
-        <div class="nav-social">
-            <div class="nav-social_profile">
-                <div class="nav-social_profilePhoto">
-                    <span class="profileImage">
-                        <img class="profilePhoto" src="images/me.jpg" alt="Self Portrait" />
-                    </span>
-                </div>
-                <div class="nav-social_profileInfo">
-                    <div class="nav-social_profileName">
-                        <h3>Alistair Devine</h3>
-                    </div>
-                    <div class="nav-social_profileEmail">
-                        <p><em>alistair.devine98@gmail.com</em></p>
-                    </div>
-                </div>
-            </div>
-            <div class="nav-social_links">
-                <div class="nav-social_linkGit">
-                    <a href="#">
-                        <span class="Github">
-                            <i class="oi oi-hard-drive"></i>
-                        </span>
-                    </a>
-                </div>
-                <div class="nav-social_linkLkin">
-                    <a href="#">
-                        <span class="LinkedIn">
-                            <i class="oi oi-external-link"></i>
-                        </span>
-                    </a>
-                </div>
-                <div class="nav-social_linkTwitter">
-                    <a href="#">
-                        <span class="Twitter">
-                            <i class="oi oi-star"></i>
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="nav-route">
-            <ul class="flex-column">
-                <li class="nav-item">
-                    <NavLink class="route-link" href="" Match="NavLinkMatch.All">
-                        <span class="oi oi-home" aria-hidden="true"></span> Home
-                    </NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="route-link" href="counter">
-                        <span class="oi oi-plus" aria-hidden="true"></span> Resume
-                    </NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="route-link" href="fetchdata">
-                        <span class="oi oi-list-rich" aria-hidden="true"></span> Open Source
-                    </NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="route-link" href="projects">
-                        <span class="oi oi-list-rich" aria-hidden="true"></span> Projects
-                    </NavLink>
-                </li>
-            </ul>
-        </div>
-        <div class="nav-project">
-            <ul class="nav-project_list">
-                @foreach (var item in navigationCollection)
-                {
-                    <li class="nav-project_item">
-                        <article>
-                            <div class="project_display">
-                                <a class="project_thumbnail" href="@item.HTML_URL">
-                                    <!--item.ProjectImage-->
-                                    <img class="project_image" src="/images/pic07.jpg" alt="Project Image One" />
-                                </a>
-                            </div>
-                            <div class="project_info">
-                                <!--item.Description-->
-                                <p>@item.Full_Name.Remove(0, 15)</p>
-                            </div>
-                        </article>
-                    </li>
-                }
-            </ul>
-        </div>
+﻿<section class="navigation" style="width: 100vw;">
+    <div class="wave">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+             preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                  class="shape-fill"></path>
+        </svg>
     </div>
-</div>
+    <div class="container">
+        <header class="d-flex justify-content-center py-3">
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="#" class="nav-link" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="/resume" class="nav-link">Resume</a></li>
+                <li class="nav-item"><a href="/opensource" class="nav-link">Open Source</a></li>
+                <li class="nav-item"><a href="/projects" class="nav-link">Projects</a></li>
+                <li class="on-scroll">
+                    <a>
+                        <img class="card-img-top" alt="50x50"
+                             src="/ProjectStructure/icons/Favorites/icons8-twitter-100.png"
+                             style="height:50px; width:50px;">
+                    </a>
+                </li>
+            </ul>
+        </header>
+    </div>
+</section>
 
 @code {
     [Parameter]
